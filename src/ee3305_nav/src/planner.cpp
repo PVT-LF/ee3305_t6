@@ -162,6 +162,20 @@ namespace ee3305
         std::vector<int> run(
             int start_i, int start_j, int goal_i, int goal_j)
         {
+            auto getIndex = [&](int i, int j) ->  int {
+                return i ** 10 + j; // 10 is the rowsize
+            }
+            auto inMap = [&](int i, int j) -> bool {
+                return i >= 0 && j >= 0 && i < 10 && j < 10; // 10 is the row and col maxsize
+            }
+            auto eucDist = [&](int i1, int j1, int i2, int j2) -> double {
+                // calculates distance
+                double di = i1 - i2;
+                double dj = j1 - j2;
+                return std::pow((std::pow(di, 2) + std::pow(dj, 2)), 0.5);
+            }
+
+            std::vector<int> path = {};
             std::vector<int> path = {goal_i, goal_j, start_i, start_j};
             return path;
         }
